@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react" 
+import { ScrollView, View } from "react-native"
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import { setStringAsync } from "expo-clipboard"
+
+async function CopiarTexto() {
+  await setStringAsync("Olá mundo!")
 }
 
 const styles = StyleSheet.create({
@@ -18,3 +16,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default function App() {
+  return <ScrollView>
+    <StatusBar barStyle="dark-content" backgroundColor="#fff"/>
+    <View>
+    <Button title="Clique aqui para copiar!" onPress={ CopiarTexto } />
+    </View>
+  </ScrollView>
+}
+
+
